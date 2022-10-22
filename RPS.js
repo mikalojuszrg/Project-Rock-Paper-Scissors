@@ -1,4 +1,8 @@
 const choices = ['rock', 'paper', 'scissors'];
+let playerSelection;
+let computerSelection;
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
@@ -6,42 +10,43 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        playerSelection > computerSelection
+        playerScore++;
         return "You win. Rock beats Scissors"
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        playerSelection < computerSelection
+        computerScore++;
         return "You lose. Paper beats Rock"
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerSelection > computerSelection
+        playerScore++;
         return "You win. Paper beats Rock"
     } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        playerSelection < computerSelection
+        computerScore++;
         return "You lose. Scissors beat paper"
     } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        playerSelection < computerSelection
+        computerScore++;
         return "You lose. Rock beats Scissors"
     } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        playerSelection > computerSelection
+        playerScore++;
         return "You win. Scissors beat Rock"
     } else {
-        playerSelection === computerSelection
         return "It's a draw"
     }
 }
 
 function game() {
     for (i=1;i<=5;i++) {
-    const computerSelection = getComputerChoice();
-    const playerSelection = prompt("What's your pick").toLowerCase();
+    computerSelection = getComputerChoice();
+    playerSelection = prompt("What's your pick").toLowerCase();
     console.log(playRound(playerSelection, computerSelection))
-
-    if (playerSelection > computerSelection) {
     }
+    if ((playerScore > computerScore)) {
+        alert("You win")
+    } else if ((computerScore > playerScore)) {
+        alert("You lose")
+    } else {
+        alert("It's a draw")
     }
-
-
 }
 
 game()
-
+console.log(playerScore, computerScore)
 
